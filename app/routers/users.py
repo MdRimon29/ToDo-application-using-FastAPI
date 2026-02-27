@@ -33,7 +33,7 @@ async def change_password(db: db_dependecy, user: user_dependency, password_chan
     user_model = db.query(User).filter(User.id == user.get('user_id')).first()
 
     if not verify_password(password_change.password, user_model.hash_password):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Password didn't match.")
     
     user_model.hash_password = get_password_hash(password_change.new_password)
     db.add(user_model)

@@ -48,7 +48,7 @@ async def create_todo(db: db_dependecy, user:user_dependency, todo_request : Tod
     todo_model = Todo(**todo_request.model_dump(), owner_id=user.get("user_id"))
     db.add(todo_model)
     db.commit()
-    return {"Message": "User created successfully"}
+    return {"Message": "TODO created successfully"}
 
 
 
